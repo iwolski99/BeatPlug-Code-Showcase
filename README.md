@@ -6,27 +6,11 @@ Public, recruiter-friendly code samples from **BeatPlug**, a private commercial 
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    U[Customer] --> F[React + Vite Storefront]
-    F --> API[Express API on Vercel]
-    API --> DB[(Neon Postgres + Drizzle ORM)]
-    API --> GH[(Private GitHub Media Repo)]
-    API --> ST[Stripe Checkout]
-    ST --> WH[Stripe Webhook]
-    WH --> API
-    API --> RS[Resend Email Delivery]
-    RS --> INBOX[Customer Inbox]
-    INBOX --> DL[Secure Download Link]
-    DL --> API
-    API --> GH
+![BeatPlug Architecture Diagram](docs/beatplug-diagram.png)
 
-    API --> P1[/Preview MP3 Proxy/]
-    API --> P2[/Artwork Proxy/]
-    API --> P3[/Signed Download Token Flow/]
-```
+This diagram shows the full BeatPlug pipeline across storefront browsing, Stripe checkout, webhook reconciliation, Neon persistence, private GitHub media storage, Resend delivery, and secure token-gated downloads.
 
-A standalone Mermaid source file also lives in [`docs/beatplug-pipeline.mmd`](docs/beatplug-pipeline.mmd).
+A standalone Mermaid source file also lives in [`docs/beatplug-pipeline.mmd`](docs/beatplug-pipeline.mmd), but the image above is the primary architecture visual for the portfolio view.
 
 ## What This Repo Demonstrates
 
