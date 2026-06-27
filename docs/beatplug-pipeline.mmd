@@ -1,0 +1,26 @@
+flowchart LR
+    U[Customer] --> F[React + Vite Storefront]
+    F --> API[Express API on Vercel]
+    API --> DB[(Neon Postgres + Drizzle ORM)]
+    API --> GH[(Private GitHub Media Repo)]
+    API --> ST[Stripe Checkout]
+    ST --> WH[Stripe Webhook]
+    WH --> API
+    API --> RS[Resend Email Delivery]
+    RS --> INBOX[Customer Inbox]
+    INBOX --> DL[Secure Download Link]
+    DL --> API
+    API --> GH
+
+    subgraph Public Browsing
+      F --> PRE[/api/beats/:beatId/preview]
+      F --> ART[/api/beats/:beatId/artwork]
+      PRE --> API
+      ART --> API
+    end
+
+    subgraph Fulfillment
+      API --> TOK[JWT Download Token]
+      TOK --> MAIL[Order Email with Link]
+      MAIL --> RS
+    end
